@@ -1,21 +1,28 @@
-import Header from './components/Header'
 import { BrowserRouter ,Routes ,Route, Link } from "react-router-dom";
 import Home from './pages/Home';
 import About from './pages/About';
 import Register from './pages/Register';
 import Login from './pages/Login';
 import Profile from './pages/Profile';
-import { Container } from 'postcss';
 import ProfileEdit from './pages/ProfileEdit';
+import Header from './components/Header';
+import Footer from './components/Footer';
+import Scolarships from "./pages/Scolarships";
+import Scolarship from "./pages/Scolarship";
 function App() {
   return (
     <BrowserRouter>
+    <div className='flex flex-col justify-between h-screen'>
+      <Header/>
       <Routes>
+        
          <Route path="/" element={<Home />} />
          <Route path="about" element={<About />} />
          <Route path="register" element={<Register />} />
          <Route path="login" element={<Login />} />
          <Route path="profile/:userId" element={<Profile />} />
+         <Route path="profile/scolarship/:userId" element={<Scolarships />} />/profile/scolarship/124214
+         <Route path="profile/scolarship/single/:scolarshipId" element={<Scolarship />} />/profile/scolarship/s=124214
          <Route path="profile/update/:userId" element={<ProfileEdit />} />
          <Route path="*" 
               element={
@@ -26,6 +33,8 @@ function App() {
                         </div>
               }/>
       </Routes>
+      <Footer/>
+      </div>
     </BrowserRouter>
   );
 }
