@@ -8,8 +8,8 @@ import { Link } from 'react-router-dom';
 
 function Home() {
   return (
-    <div className='justify-center align-center'>
-      <div className="carousel w-full max-h-full">
+    <div className='justify-center align-center h-fit'>
+      <div className="carousel w-full h-fit">
         <div id="1" className="carousel-item relative w-full">
           <div className="hero min-h-screen bg-base-200">
             <div className="hero-content flex-col lg:flex-row-reverse">
@@ -80,7 +80,6 @@ function Home() {
             <a href="#1" className="btn btn-circle text-3xl">👉</a>
           </div>
         </div>
-
       </div>
     </div>
   )

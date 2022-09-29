@@ -8,8 +8,8 @@ import Profile from './pages/Profile';
 import ProfileEdit from './pages/ProfileEdit';
 import Header from './components/Header';
 import Footer from './components/Footer';
-import Scolarships from "./pages/Scolarships";
-import Scolarship from "./pages/Scolarship";
+import Scholarships from "./pages/Scholarships";
+import Scholarship from "./pages/Scholarship";
 import { Context } from "./context/Context";
 function App() {
   const {user} = useContext(Context);
@@ -24,8 +24,8 @@ function App() {
          <Route path="register" element={<Register />} />
          <Route path="login" element={<Login />} />
          <Route path="profile/:userId" element={user ? <Profile /> : <Home/>} />
-         <Route path="profile/scolarship/:userId" element={user ? <Scolarships /> : <Home />} />/profile/scolarship/124214
-         <Route path="profile/scolarship/single/:scolarshipId" element={user ? <Scolarship /> : <Home />} />/profile/scolarship/s=124214
+         <Route path="profile/scholarship/:userId" element={user ? <Scholarships /> : <Home />} />/profile/scolarship/124214
+         <Route path="profile/scholarship/single/:scholarshipId" element={user ? <Scholarship /> : <Home />} />/profile/scolarship/s=124214
          <Route path="profile/update/:userId" element={user ? <ProfileEdit/> : <Home />} />
          <Route path="*" 
               element={

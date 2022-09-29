@@ -10,16 +10,16 @@ function Profile() {
   useEffect(() => {
     const getUser = async () => {
       const res = await axios.get(`/users/${user._id}`);
-      if (res.data) {
-        setUserdata(res.data);
-      }
+      res.data && setUserdata(res.data);
+
     };
     getUser();
   }, [])
+
   return (
-    <div className='flex flex-row mt-60px '>
+    <div className='flex flex-row mt-60px md:h-full '>
       <UserProfileSidebar />
-      <main className='container  grid md:grid-cols-3 sm:grid-cols-1 gap-5 justify-center items-center md:h-screen sm:h-full mx-2 mb-3'>
+      <main className='container  grid md:grid-cols-3 sm:grid-cols-1 gap-5 justify-center items-center md:h-full sm:h-full mx-2 mb-3'>
         <div className="avatar">
           <div className="w-3/4 mask mask-hexagon grid mx-auto">
             <img className='place-self-center' src={imagePlaceholder} />

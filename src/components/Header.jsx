@@ -14,7 +14,7 @@ function Header() {
         <Link className="btn btn-ghost normal-case text-xl" to="/">🪙 Ũdhamini App</Link>
       </div>
       <div className="flex-none">
-        <ul className="menu menu-horizontal p-0">
+        <ul className="menu menu-horizontal p-0 dropdown-content mt-3 ">
           <li><Link className='my-0' to="/"><FaHome />Home</Link></li>
           <li><Link to="/about"><svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
             About</Link></li>
@@ -39,6 +39,7 @@ function Header() {
           }
         </ul>
       </div>
+
     </div>
   )
 }
