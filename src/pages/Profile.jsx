@@ -1,27 +1,41 @@
-import React from 'react';
-import UserProfileSidebar from '../components/UserProfileSidebar'
-import imagePlaceholder from '../images/placeholder.png'
+import { useState, useEffect, useContext } from 'react';
+import UserProfileSidebar from '../components/UserProfileSidebar';
+import imagePlaceholder from '../images/placeholder.png';
+import { Context } from '../context/Context';
+import axios from 'axios';
 function Profile() {
+  const { user } = useContext(Context);
+  const [userData, setUserdata] = useState({});
+
+  useEffect(() => {
+    const getUser = async () => {
+      const res = await axios.get(`/users/${user._id}`);
+      if (res.data) {
+        setUserdata(res.data);
+      }
+    };
+    getUser();
+  }, [])
   return (
     <div className='flex flex-row mt-60px '>
       <UserProfileSidebar />
       <main className='container  grid md:grid-cols-3 sm:grid-cols-1 gap-5 justify-center items-center md:h-screen sm:h-full mx-2 mb-3'>
-        <div class="avatar">
-          <div class="w-3/4 mask mask-hexagon grid mx-auto">
+        <div className="avatar">
+          <div className="w-3/4 mask mask-hexagon grid mx-auto">
             <img className='place-self-center' src={imagePlaceholder} />
           </div>
         </div>
         <ul className="menu menu-vertical bg-base-200 rounded-box p-2 text-xl">
-          <li><a>Full Names : KEVIN COMBA GATIMU</a></li>
-          <li><a>Age : 28</a></li>
-          <li><a>Gender : Male</a></li>
-          <li><a>Email : Kelchospnse88@gmail.com</a></li>
-          <li><a>G.P.A : 3.8</a></li>
-          <li><a>Education Level : Udergraduate</a></li>
-          <li><a>Country of Residence : Kenya</a></li>
+          <li><a>Full Names : {userData?.fullname}</a></li>
+          <li><a>Age : {userData?.age}</a></li>
+          <li><a>Gender : {userData?.gender}</a></li>
+          <li><a>Email : {userData?.email}</a></li>
+          <li><a>G.P.A : {userData?.gpa}</a></li>
+          <li><a>Education Level : {userData?.education_level}</a></li>
+          <li><a>Country of Residence : {userData?.country}</a></li>
         </ul>
         <ul className="menu menu-vertical bg-base-200 rounded-box p-2 text-xl justify-center">
-          <li><a>Username : Kelchospense</a></li>
+          <li><a>Username : {userData?.username}</a></li>
           <li><a>Password  : ******</a></li>
         </ul>
       </main>

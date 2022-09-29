@@ -1,11 +1,53 @@
-import React from 'react'
+import { useState } from 'react'
 import imagePlaceholder from '../images/placeholder.png'
 import { useForm } from "react-hook-form";
+import axios from 'axios';
 function Register() {
   const { register, formState: { errors }, handleSubmit } = useForm();
-  const onSubmit = data => console.log(data);
+  const [error, setError] = useState(false);
+  const [success, setSuccess] = useState(false);
+  const onSubmit = async (data) => {
+    try {
+      const res = await axios.post('/auth/register', {
+        fullname: data.fullname,
+        age: data.age,
+        gender: data.gender,
+        education_level: data.education_level,
+        gpa: data.gpa,
+        country: data.country,
+        profilepic: "data.profilepic",
+        username: data.username,
+        email: data.email,
+        password: data.password,
+      });
+      setSuccess(true);
+      setTimeout(() => setError(false), 3000);
+      res.data && window.location.replace("/login");
+    } catch (error) {
+      setError(true);
+      setTimeout(() => setError(false), 4000);
+    }
+  };
   return (
     <main className='bg-base-200 mt-60px'>
+      {
+        error == true && (
+          <div className="alert alert-error mt-60px shadow-lg w-fit z-50 text-center text-white absolute top-0 right-0" >
+            <div><span className='text-2xl'>😒</span>
+              <span>Registration Error!Please try Again</span>
+            </div>
+          </div >
+        )
+      }
+      {
+        success == true && (
+          <div className="alert alert-success mt-60px shadow-lg w-fit z-50 text-center text-white absolute top-0 right-0" >
+            <div><svg xmlns="http://www.w3.org/2000/svg" class="stroke-current flex-shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+              <span>Registration Success!</span>
+            </div>
+          </div >
+        )
+      }
       <div className="hero-content">
         <h1 className="text-5xl font-bold">✍️Register now!</h1>
       </div>
@@ -67,17 +109,17 @@ function Register() {
                   <input {...register("email", { required: true, pattern: /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/ })} type="text" placeholder="Enter your email" className="input input-bordered" />
                   {errors.email?.type === 'required' && <p className="label-text-alt text-red-400 pt-2">email is required 😶</p>}{errors.email?.type === 'pattern' && <p className="label-text-alt text-red-400 pt-2">invalid email😶</p>}
                   <label className="label"><span className="label-text">Education level</span></label>
-                  <select {...register("educationlevel", { required: true })} className="select select-bordered w-full max-w-xs">
+                  <select {...register("education_level", { required: true })} className="select select-bordered w-full max-w-xs">
                     <option selected disabled value="">Select education level</option>
                     <option value="postgraduate">Postgraduate</option>
                     <option value="undergraduate">Undergraduate</option>
                     <option value="seniorsecondaryschool">Senior Secondary School</option>
                   </select>
-                  {errors.educationlevel?.type === 'required' && <p className="label-text-alt text-red-400 pt-2">education level is required 😶</p>}
+                  {errors.education_level?.type === 'required' && <p className="label-text-alt text-red-400 pt-2">education level is required 😶</p>}
                 </div>
               </div>
               <div className="form-control mt-3 grid">
-                <button type="submit" className="btn btn-outline max-w-md place-self-center w-full">Login</button>
+                <button type="submit" className="btn btn-outline max-w-md place-self-center w-full">Register</button>
               </div>
             </div>
           </div>

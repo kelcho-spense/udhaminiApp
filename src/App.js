@@ -1,3 +1,4 @@
+import { useContext } from "react";
 import { BrowserRouter ,Routes ,Route, Link } from "react-router-dom";
 import Home from './pages/Home';
 import About from './pages/About';
@@ -9,7 +10,9 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import Scolarships from "./pages/Scolarships";
 import Scolarship from "./pages/Scolarship";
+import { Context } from "./context/Context";
 function App() {
+  const {user} = useContext(Context);
   return (
     <BrowserRouter>
     <div className='flex flex-col justify-between h-screen'>
@@ -20,10 +23,10 @@ function App() {
          <Route path="about" element={<About />} />
          <Route path="register" element={<Register />} />
          <Route path="login" element={<Login />} />
-         <Route path="profile/:userId" element={<Profile />} />
-         <Route path="profile/scolarship/:userId" element={<Scolarships />} />/profile/scolarship/124214
-         <Route path="profile/scolarship/single/:scolarshipId" element={<Scolarship />} />/profile/scolarship/s=124214
-         <Route path="profile/update/:userId" element={<ProfileEdit />} />
+         <Route path="profile/:userId" element={user ? <Profile /> : <Home/>} />
+         <Route path="profile/scolarship/:userId" element={user ? <Scolarships /> : <Home />} />/profile/scolarship/124214
+         <Route path="profile/scolarship/single/:scolarshipId" element={user ? <Scolarship /> : <Home />} />/profile/scolarship/s=124214
+         <Route path="profile/update/:userId" element={user ? <ProfileEdit/> : <Home />} />
          <Route path="*" 
               element={
                         <div className='shadow-lg grid place-self-center mt-20 py-20 w-3/4 mx-auto text-white  justify-center text-center'>
