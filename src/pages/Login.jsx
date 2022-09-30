@@ -22,7 +22,7 @@ function Login() {
   return (
     <div className='grid mt-60px'>
       {
-        error == true && (
+        error === true && (
           <div className="alert alert-error mt-60px shadow-lg w-fit z-50 text-center text-white absolute top-0 right-0" >
             <div><span className='text-2xl'>😒</span>
               <span>Error! Wrong credentials</span>

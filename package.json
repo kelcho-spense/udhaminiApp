@@ -45,5 +45,5 @@
     "postcss": "^8.4.16",
     "tailwindcss": "^3.1.8"
   },
-  "proxy": "http://localhost:5000/api"
+  "proxy": "https://udhaminiapi.azurewebsites.net/api"
 }

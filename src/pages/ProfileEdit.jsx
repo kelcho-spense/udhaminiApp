@@ -4,15 +4,39 @@ import imagePlaceholder from '../images/placeholder.png'
 import { useForm } from "react-hook-form";
 import { Context } from '../context/Context';
 import axios from 'axios';
+
 function ProfileEdit() {
+    const PF = "http://localhost:5000/images/";
     const { user } = useContext(Context);
     const { register, formState: { errors }, handleSubmit } = useForm();
     const [success, setSuccess] = useState(false);
     const [error, setError] = useState(false);
     const [userData, setUserdata] = useState({});
+    const [file, setFile] = useState(null);
     const onSubmit = async (data) => {
+        const newUser = {
+            fullname: data.fullname,
+            age: data.age,
+            gender: data.gender,
+            education_level: data.education_level,
+            gpa: data.gpa,
+            country: data.country,
+            username: data.username,
+            email: data.email,
+            password: data.password,
+        }
+        if (file) {
+            const data = new FormData();
+            const filename = Date.now() + file.name;
+            data.append("name", filename);
+            data.append("file", file);
+            newUser.profilepic = filename;
+            try {
+                await axios.post("/upload", data);
+            } catch (err) { }
+        }
         try {
-            await axios.put("/users/" + user._id, { ...data, userId: user._id })
+            await axios.put("/users/" + user._id, { ...newUser, userId: user._id })
             setSuccess(true);
             setTimeout(() => setError(false), 3000);
         } catch (error) {
@@ -35,7 +59,7 @@ function ProfileEdit() {
             <UserProfileSidebar />
             <main className='container flex-1  h-full mt-2'>
                 {
-                    error == true && (
+                    error === true && (
                         <div className="alert alert-error mt-60px shadow-lg w-fit z-50 text-center text-white absolute top-0 right-0" >
                             <div><span className='text-2xl'>😒</span>
                                 <span>Error! On User Update Please try Again</span>
@@ -44,7 +68,7 @@ function ProfileEdit() {
                     )
                 }
                 {
-                    success == true && (
+                    success === true && (
                         <div className="alert alert-success mt-60px shadow-lg w-fit z-50 text-center text-white absolute top-0 right-0" >
                             <div><svg xmlns="http://www.w3.org/2000/svg" class="stroke-current flex-shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
                                 <span>User Update Successful!</span>
@@ -84,7 +108,20 @@ function ProfileEdit() {
                                 <div className='card-header'>
                                     <div className="avatar grid">
                                         <div className="w-24 mask mask-hexagon place-self-center" >
-                                            <img src={imagePlaceholder} />
+                                            <label htmlFor="fileInput">
+                                                {
+                                                    file ? (
+                                                        <img
+                                                            className="cursor-pointer"
+                                                            src={URL.createObjectURL(file)}
+                                                            alt="invalid Imagefile😒"
+                                                        />
+                                                    ) : (
+                                                        <img className='cursor-pointer' src={PF + userData.profilepic} />
+                                                    )
+                                                }
+                                            </label>
+                                            <input type="file" id="fileInput" style={{ display: "none" }} onChange={(e) => setFile(e.target.files[0])} />
                                         </div>
                                     </div>
                                 </div>
