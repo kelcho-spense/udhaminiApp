@@ -1,5 +1,4 @@
 import React from 'react';
-import test from "../images/test.jpg"
 import slider2 from "../images/slider2.jpg"
 import slider1 from "../images/slider1.png"
 import slider3 from "../images/slider3.jpg"
@@ -13,7 +12,7 @@ function Home() {
         <div id="1" className="carousel-item relative w-full">
           <div className="hero min-h-screen bg-base-200">
             <div className="hero-content flex-col lg:flex-row-reverse">
-              <img src={slider2} className="max-w-xl rounded-lg shadow-2xl" />
+              <img src={slider2} className="max-w-xl rounded-lg shadow-2xl" alt='no pic' />
               <div>
                 <h1 className="text-5xl font-bold">Welcome to Udhamini Community</h1>
                 <p className="py-6">Udhamini is a platform where students can get access to huge collection of Scolarships and apply for them. Thousands of students have benifited, and we are grand your here...</p>
@@ -29,7 +28,7 @@ function Home() {
         <div id="2" className="carousel-item relative w-full">
           <div className="hero min-h-screen bg-base-200">
             <div className="hero-content flex-col lg:flex-row">
-              <img src={slider3} className="max-w-xl rounded-lg shadow-2xl" />
+              <img src={slider3} className="max-w-xl rounded-lg shadow-2xl" alt='no pic' />
               <div>
                 <h1 className="text-5xl font-bold">Our Goals 🤝</h1>
                 <div className="py-6 text-xl">
@@ -51,7 +50,7 @@ function Home() {
         <div id="3" className="carousel-item relative w-full">
           <div className="hero min-h-screen bg-base-200">
             <div className="hero-content flex-col lg:flex-row">
-              <img src={slider1} className="max-w-sm rounded-lg shadow-2xl" />
+              <img src={slider1} className="max-w-sm rounded-lg shadow-2xl" alt='no pic' />
               <div>
                 <h1 className="text-5xl font-bold">Hear from Kevin Comba</h1>
                 <p className="py-6 text-xl">I joined Udhamini community, 2022 january after hearing the benefits from a friend.I had a huge school balance which my parents were struggling with. Upon registering i was able to go through various available scolarships and luckily I was able to get <span className='badge text-lg text-yellow-500 font-bold mx-1 py-2'>$10,000 </span>funded my school fees</p>
@@ -67,7 +66,7 @@ function Home() {
         <div id="4" className="carousel-item relative w-full">
           <div className="hero min-h-screen bg-base-200">
             <div className="hero-content flex-col lg:flex-row">
-              <img src={slider4} className="max-w-sm h-sm rounded-lg shadow-2xl" />
+              <img src={slider4} className="max-w-sm h-sm rounded-lg shadow-2xl" alt='no pic' />
               <div>
                 <h1 className="text-5xl font-bold">Hear from Denis Wachira</h1>
                 <p className="py-6 text-xl">‶ I joined Udhamini community, 2021 may after watching their advert on youtube.My parents were struggling with my fourth year school fees. Upon registering i was able aquire a scolarship worth <span className='badge text-lg text-yellow-500 font-bold mx-1 py-2'>$5,000 </span>funded my school fees. Currently am a software engineer in Microsoft. ″</p>

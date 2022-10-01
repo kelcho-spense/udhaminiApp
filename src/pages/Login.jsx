@@ -63,7 +63,7 @@ function Login() {
           </div >
         </div>
         <div className="hero-content">
-          <img src={login} className="max-w-lg rounded-lg shadow-2xl" />
+          <img alt='no pic' src={login} className="max-w-lg rounded-lg shadow-2xl" />
         </div>
       </div>
     </div>

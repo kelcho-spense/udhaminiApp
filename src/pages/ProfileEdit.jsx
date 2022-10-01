@@ -1,6 +1,5 @@
 import { useState, useContext, useEffect } from 'react'
 import UserProfileSidebar from '../components/UserProfileSidebar'
-import imagePlaceholder from '../images/placeholder.png'
 import { useForm } from "react-hook-form";
 import { Context } from '../context/Context';
 import axios from 'axios';
@@ -52,7 +51,7 @@ function ProfileEdit() {
             }
         };
         getUser();
-    }, [success])
+    }, [user._id])
 
     return (
         <div className='flex flex-row mt-60px'>
@@ -117,7 +116,7 @@ function ProfileEdit() {
                                                             alt="invalid Imagefile😒"
                                                         />
                                                     ) : (
-                                                        <img className='cursor-pointer' src={PF + userData.profilepic} />
+                                                        <img className='cursor-pointer' src={PF + userData.profilepic} alt="invalid Imagefile😒" />
                                                     )
                                                 }
                                             </label>
@@ -147,7 +146,7 @@ function ProfileEdit() {
                                         </select>
                                         {errors.gender?.type === 'required' && <p className="label-text-alt text-red-400 pt-2">gender is required 😶</p>}
                                         <label className="label"><span className="label-text">Email</span></label>
-                                        <input {...register("email", { required: true, pattern: /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/ })} type="text" placeholder={userData?.email} className="input input-bordered" />
+                                        <input {...register("email", { required: true, pattern: /^[^\s@]+@[^\s@]+\.[^\s@]+$/ })} type="text" placeholder={userData?.email} className="input input-bordered" />
                                         {errors.email?.type === 'required' && <p className="label-text-alt text-red-400 pt-2">email is required 😶</p>}{errors.email?.type === 'pattern' && <p className="label-text-alt text-red-400 pt-2">invalid email😶</p>}
                                         <label className="label"><span className="label-text">Education level</span></label>
                                         <select {...register("educationlevel", { required: true })} className="select select-bordered w-full max-w-xs">

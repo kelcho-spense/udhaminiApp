@@ -12,10 +12,9 @@ function Profile() {
     const getUser = async () => {
       const res = await axios.get(`/users/${user._id}`);
       res.data && setUserdata(res.data);
-
     };
     getUser();
-  }, [])
+  }, [user._id])
 
   return (
     <div className='flex flex-row mt-60px md:h-full '>
@@ -25,22 +24,22 @@ function Profile() {
           <div className="w-3/4 mask mask-hexagon grid mx-auto">
             {
               userData.profilepic ? (
-                <img src={PF + userData.profilepic} alt="" className="w-full h-full object-cover " />
+                <img src={PF + userData.profilepic} className="w-full h-full object-cover" alt='no pic' />
               ) : (
-                <img className='place-self-center' src={imagePlaceholder} />
+                <img className='place-self-center' src={imagePlaceholder} alt='no pic' />
               )
             }
 
           </div>
         </div>
         <ul className="menu menu-vertical bg-base-200 rounded-box p-2 text-xl">
-          <li><a>Full Names : {userData?.fullname}</a></li>
-          <li><a>Age : {userData?.age}</a></li>
-          <li><a>Gender : {userData?.gender}</a></li>
-          <li><a>Email : {userData?.email}</a></li>
-          <li><a>G.P.A : {userData?.gpa}</a></li>
-          <li><a>Education Level : {userData?.education_level}</a></li>
-          <li><a>Country of Residence : {userData?.country}</a></li>
+          <li><a href='#'>Full Names : {userData?.fullname}</a></li>
+          <li><a href='#'>Age : {userData?.age}</a></li>
+          <li><a href='#'>Gender : {userData?.gender}</a></li>
+          <li><a href='#'>Email : {userData?.email}</a></li>
+          <li><a href='#'>G.P.A : {userData?.gpa}</a></li>
+          <li><a href='#'>Education Level : {userData?.education_level}</a></li>
+          <li><a href='#'>Country of Residence : {userData?.country}</a></li>
         </ul>
         <ul className="menu menu-vertical bg-base-200 rounded-box p-2 text-xl justify-center">
           <li><a>Username : {userData?.username}</a></li>

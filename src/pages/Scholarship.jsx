@@ -11,7 +11,7 @@ function Scholarship() {
             const res = await axios.get(`/scholarship/${params.scholarshipId}`);
             res.data && setScholarshipData(res.data);
         }
-    }, [])
+    }, [params.scholarshipId])
     return (
         <div className='flex flex-row mt-60px'>
             <UserProfileSidebar />
