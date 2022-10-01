@@ -31,7 +31,7 @@ function Header() {
                   <ul tabIndex={0} className="mt-10 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-30">
                     <li><Link to={`/profile/${user?._id}`} className="justify-between">Profile</Link></li>
                     <li><Link to={`/profile/update/${user?._id}`}>Settings</Link></li>
-                    <li><a onClick={handleLogout}>Logout</a></li>
+                    <li><a href='#' onClick={handleLogout}>Logout</a></li>
                   </ul>
                 </div>
               </li>
